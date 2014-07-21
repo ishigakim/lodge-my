@@ -31,7 +31,6 @@ RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
-=begin
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
   # `:focus` metadata. When nothing is tagged with `:focus`, all examples
@@ -87,33 +86,5 @@ RSpec.configure do |config|
     # Prevents you from mocking or stubbing a method that does not exist on
     # a real object. This is generally recommended.
     mocks.verify_partial_doubles = true
-  end
-=end
-  config.order = 'random'
-
-  class ActiveRecord::Base
-    mattr_accessor :shared_connection
-    @@shared_connection = nil
-
-    def self.connection
-      @shared_connection || retrieve_connection
-    end
-  end
-
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.before(:each) do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
-    else
-      DatabaseCleaner.strategy = :truncation
-    end
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
   end
 end

@@ -54,9 +54,8 @@ ready = ->
     userIdDataAttrName = "data-user-id"
     triggers = $("[" + userIdDataAttrName + "]")
     triggers.on "click", triggers.parent(), showUserInfo
-    $(document).on "click", hideUserInfo
+    $(document).on "click.turbo", hideUserInfo
   )()
 
 # for turbolinks
 $(document).ready(ready)
-$(document).on('page:load', ready)

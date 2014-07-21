@@ -14,6 +14,7 @@
 //= stub externals/respond.min
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery-fileupload/basic

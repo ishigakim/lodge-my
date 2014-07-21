@@ -10,7 +10,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
+ gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -81,6 +81,16 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'database_cleaner'
+  case ENV['DB']
+  when 'sqlite'
+    gem 'sqlite3'
+  when 'mysql'
+    gem 'mysql2'
+  when 'postgresql'
+    gem 'pg'
+  else
+    gem 'sqlite3'
+  end
 end
 
 # Include database gems for the adapters found in the database
